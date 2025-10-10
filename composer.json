@@ -89,8 +89,9 @@
         "start": [
             "Composer\\Config::disableProcessTimeout",
             "symfony serve"
-        ]
-            },
+        ],
+        "test:phpcs": "php vendor/bin/php-cs-fixer fix --dry-run"
+    },
     "conflict": {
         "symfony/symfony": "*"
     },
