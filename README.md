@@ -91,4 +91,22 @@ Associez le dépôt local et le dépôt distant
 
 Poussez la branche local
 
+## Documentation des scripts
 
+`start`: Démarre le serveur Web.
+
+`test:phpcs`: Vérifie le code à l'aide de PHP CS Fixer,
+
+`fix:phpcs`: Fixe le code à l'aide de PHP CS Fixer,
+
+`test:twigcs`: Vérifie le code à l'aide de Twig CS Fixer,
+
+`fix:twigcs`: Fixe le code à l'aide de Twig CS Fixer,
+
+`test`: Vérifie le code à l'aide des deux modules de CS Fixer (PHP & Twig),
+
+`fix`: Fixe le code à l'aide des deux modules de CS Fixer (PHP & Twig)
+
+Avant tout démarrage de script, ajouter Composer comme exemple ci-dessous :
+
+    Composer start
