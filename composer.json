@@ -91,7 +91,8 @@
             "symfony serve"
         ],
         "test:phpcs": "php vendor/bin/php-cs-fixer fix --dry-run",
-        "fix:phpcs": "php vendor/bin/php-cs-fixer fix"
+        "fix:phpcs": "php vendor/bin/php-cs-fixer fix",
+        "test:twigcs": "php vendor/bin/twig-cs-fixer fix --dry-run"
     },
     "conflict": {
         "symfony/symfony": "*"
