@@ -109,4 +109,4 @@ Poussez la branche local
 
 Avant tout démarrage de script, ajouter Composer comme exemple ci-dessous :
 
-    Composer start
+    composer start
