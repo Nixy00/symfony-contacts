@@ -1,7 +1,8 @@
 # Symfony 7.3
 ## Auteur : Mattéo Godart
+## Installation / Configuration :
 
-### Installation de l'exécutable « symfony »
+## Installation de l'exécutable « symfony »
 
 [Installez l'exécutable « symfony »](https://symfony.com/download) qui contient le serveur Web local en lançant la commande suivante :
 
