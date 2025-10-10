@@ -90,7 +90,8 @@
             "Composer\\Config::disableProcessTimeout",
             "symfony serve"
         ],
-        "test:phpcs": "php vendor/bin/php-cs-fixer fix --dry-run"
+        "test:phpcs": "php vendor/bin/php-cs-fixer fix --dry-run",
+        "fix:phpcs": "php vendor/bin/php-cs-fixer fix"
     },
     "conflict": {
         "symfony/symfony": "*"
