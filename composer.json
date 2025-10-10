@@ -85,8 +85,12 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "start": [
+            "Composer\\Config::disableProcessTimeout",
+            "symfony serve"
         ]
-    },
+            },
     "conflict": {
         "symfony/symfony": "*"
     },
