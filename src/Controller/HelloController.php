@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Requirement\Requirement;
 
 final class HelloController extends AbstractController
 {
@@ -22,9 +23,13 @@ final class HelloController extends AbstractController
         return $this->render('hello/world.html.twig', ['name' => $name]);
     }
 
-    #[Route('/hello/{name}/{times}', name: 'app_hello_manyTimes')]
+    #[Route('/hello/{name}/{times}', name: 'app_hello_manyTimes', requirements: ['times' => Requirement::DIGITS])]
     public function manyTimes(string $name, string $times): Response
     {
+        if ($times != 0 and $times >= 10) {
+            $times = 3;
+        }
+
         return $this->render('hello/many_times.html.twig', ['name' => $name, 'times' => $times]);
     }
 }
