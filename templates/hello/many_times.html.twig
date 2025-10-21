@@ -1,0 +1,11 @@
+{% extends 'hello/world.html.twig' %}
+
+{% block title %}Hello many times!{% endblock %}
+
+{% block body %}
+    {% for i in range(1, times) %}
+        <p style="color: {{ cycle(['blue', 'orange'], loop.index0) }};">
+            Hello many times {{ times }}! ({{ "%02d"|format(i) }})
+        </p>
+    {% endfor %}
+{% endblock %}
