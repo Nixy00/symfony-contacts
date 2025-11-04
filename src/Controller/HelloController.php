@@ -24,7 +24,7 @@ final class HelloController extends AbstractController
     }
 
     #[Route('/hello/{name}/{times}', name: 'app_hello_manyTimes', requirements: ['times' => Requirement::DIGITS])]
-    public function manyTimes(string $name, string $times = '3'): Response
+    public function manyTimes(string $name, int $times = 3): Response
     {
         if ($times == 0 or $times >= 10) {
             $times = 3;
