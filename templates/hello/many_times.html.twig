@@ -5,7 +5,7 @@
 {% block body %}
     {% for i in 1..times %}
         <p style="color: {{ cycle(['blue', 'orange'], loop.index0) }};">
-            Hello many times {{ name }}! ({{ "%02d"|format(i) }})
+            Hello many times {{ name }}! ({{ '%02d'|format(i) }})
         </p>
     {% endfor %}
 {% endblock %}
