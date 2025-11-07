@@ -13,6 +13,7 @@ final class HelloController extends AbstractController
     {
         return $this->manyTimes($name, 3);
     }
+
     #[Route('/hello/{name}/{times}', name: 'app_hello_manytimes', requirements: ['times' => '\d+'])]
     public function manyTimes(string $name, int $times): Response
     {
@@ -20,8 +21,10 @@ final class HelloController extends AbstractController
             return $this->redirectToRoute('app_hello_manytimes', ['name' => $name, 'times' => 3]);
         }
         $name = ucfirst(strtolower($name));
+
         return $this->render('hello/many_times.html.twig', ['name' => $name, 'times' => $times]);
     }
+
     #[Route('/hello', name: 'app_hello')]
     public function index(): Response
     {
