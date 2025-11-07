@@ -1,3 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello HelloController!{% endblock %}
+
+{% block body %}
+    <ul>
+        <li>
+            <a href="{{ path('app_hello_manyTimes', {'name': 'Joe', 'times': 5 }) }}">
+                5 Hello à Joe
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('app_hello_manyTimes', {'name': 'Bob', 'times': 8}) }}">
+                8 Hello à Bob
+            </a>
+        </li>
+    </ul>
+{% endblock %}
+
