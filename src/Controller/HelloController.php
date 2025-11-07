@@ -9,12 +9,10 @@ use Symfony\Component\Routing\Requirement\Requirement;
 
 final class HelloController extends AbstractController
 {
-
-
     #[Route('/hello/{name}/{times}', name: 'app_hello_manyTimes', requirements: ['times' => Requirement::DIGITS])]
     public function manyTimes(string $name, int $times = 3): Response
     {
-        if ($times == 0 or $times >= 10) {
+        if (0 == $times or $times >= 10) {
             return $this->redirectToRoute('app_hello_manyTimes', ['name' => $name, 'times' => 3]);
         }
 

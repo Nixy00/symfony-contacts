@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace App\Tests\Controller\Hello;
 
 use App\Tests\Support\ControllerTester;
