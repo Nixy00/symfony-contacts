@@ -97,11 +97,16 @@
         "fix:twigcs": "vendor/bin/twig-cs-fixer lint --fix",
         "test": [
             "@test:phpcs",
-            "@test:twigcs"
+            "@test:twigcs",
+            "@test:codeception"
         ],
         "fix": [
             "@fix:phpcs",
             "@fix:twigcs"
+        ],
+        "test:codeception": [
+            "codecept clean",
+            "php vendor/bin/codecept run"
         ]
     },
     "scripts-descriptions": {
