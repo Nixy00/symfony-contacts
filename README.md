@@ -107,6 +107,8 @@ Poussez la branche local
 
 `fix`: Fixe le code à l'aide des deux modules de CS Fixer (PHP & Twig)
 
+`test:codeception` : Vérifie le code à l'aide de Codeception
+
 Avant tout démarrage de script, ajouter Composer comme exemple ci-dessous :
 
     composer start
