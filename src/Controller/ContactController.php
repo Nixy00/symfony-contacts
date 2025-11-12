@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Controller;
+
+use App\Repository\ContactRepository;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
+
+final class ContactController extends AbstractController
+{
+    #[Route('/contact', name: 'app_contact')]
+    public function index(ContactRepository $contactRepository): Response
+    {
+        $contacts = $contactRepository->getRepository(EntityRepository::class)->findBy(
+            ['lastname' => 'ASC'],
+            ['firstname' => 'ASC']
+        )
+        ]);
+    }
+}
