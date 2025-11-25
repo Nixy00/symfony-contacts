@@ -21,8 +21,13 @@ final class ContactController extends AbstractController
     }
 
     #[Route('/contact/{contactId}', name: 'app_contact_id', requirements: ['contactId' => '\d+'])]
-    public function show(int $contactId): Response
+    public function show(int $contactId, ContactRepository $contactRepository): Response
     {
-        return $this->render('contact/show.html.twig', ['contactId' => $contactId]);
+        $contact = $contactRepository->find($contactId);
+
+        if (!$contact) {
+            throw $this->createNotFoundException("Le contact avec l'identifiant {$contactId} n'existe pas.");
+        }
+        return $this->render('contact/show.html.twig', ['contact' => $contact]);
     }
 }
