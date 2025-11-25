@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Repository\ContactRepository;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -17,6 +16,7 @@ final class ContactController extends AbstractController
             [],
             ['lastname' => 'ASC', 'firstname' => 'ASC']
         );
+
         return $this->render('contact/index.html.twig', ['contacts' => $contacts]);
     }
 }
