@@ -28,6 +28,7 @@ final class ContactController extends AbstractController
         if (!$contact) {
             throw $this->createNotFoundException("Le contact avec l'identifiant {$contactId} n'existe pas.");
         }
+
         return $this->render('contact/show.html.twig', ['contact' => $contact]);
     }
 }
