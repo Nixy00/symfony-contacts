@@ -3,7 +3,6 @@
 namespace App\Factory;
 
 use App\Entity\Contact;
-use Transliterator;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
@@ -16,11 +15,11 @@ final class ContactFactory extends PersistentProxyObjectFactory
      *
      * @todo inject services if required
      */
-    private Transliterator $transliterator;
+    private \Transliterator $transliterator;
 
     public function __construct()
     {
-        $this->transliterator = Transliterator::create('Any-Lower; Latin-ASCII');
+        $this->transliterator = \Transliterator::create('Any-Lower; Latin-ASCII');
     }
 
     #[\Override]
@@ -43,7 +42,7 @@ final class ContactFactory extends PersistentProxyObjectFactory
         $lastname = $faker->lastName();
 
         $firstnameLower = $this->normalizeName($firstname);
-        $lastnameLower  = $this->normalizeName($lastname);
+        $lastnameLower = $this->normalizeName($lastname);
 
         $domain = $faker->domainName();
 
@@ -60,9 +59,6 @@ final class ContactFactory extends PersistentProxyObjectFactory
 
         return preg_replace('/[^a-z]/', '-', $nameLower);
     }
-
-
-
 
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
