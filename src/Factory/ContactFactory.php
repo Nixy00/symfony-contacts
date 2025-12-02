@@ -39,11 +39,8 @@ final class ContactFactory extends PersistentProxyObjectFactory
         $firstname = $faker->firstName();
         $lastname = $faker->lastName();
 
-        $firstnameLower = mb_strtolower(Transliterator::create('Any-Lower; Latin-ASCII')->transliterate($firstname));
-        $lastnameLower = mb_strtolower(Transliterator::create('Any-Lower; Latin-ASCII')->transliterate($lastname));
-
-        $firstnameLower = preg_replace('/[^a-z]/', '-', $firstnameLower);
-        $lastnameLower = preg_replace('/[^a-z]/', '-', $lastnameLower);
+        $firstnameLower = $this->normalizeName($firstname);
+        $lastnameLower  = $this->normalizeName($lastname);
 
         $domain = $faker->domainName();
 
@@ -53,6 +50,14 @@ final class ContactFactory extends PersistentProxyObjectFactory
             'email' => "{$firstnameLower}.{$lastnameLower}@{$domain}",
         ];
     }
+
+    protected function normalizeName(string $name): string
+    {
+        $nameLower = mb_strtolower(Transliterator::create('Any-Lower; Latin-ASCII')->transliterate($name));
+
+        return preg_replace('/[^a-z]/', '-', $nameLower);
+    }
+
 
 
 
