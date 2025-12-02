@@ -16,4 +16,11 @@ final class IndexCest
         $I->see('Liste des contacts', 'h1');
         $I->seeNumberOfElements('ul li a', 195);
     }
+
+    public function clickingFirstContactNavigatesToCorrectRoute(ControllerTester $I)
+    {
+        $I->amOnPage('/contact');
+        $I->click('ul > li > a');
+        $I->seeCurrentRouteIs('app_contact_id');
+    }
 }
