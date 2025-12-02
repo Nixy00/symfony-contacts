@@ -14,6 +14,6 @@ final class IndexCest
         $I->seeResponseCodeIs(200);
         $I->seeInTitle('Liste des contacts');
         $I->see('Liste des contacts', 'h1');
-        $I->seeNumberOfElements('ul li', 195);
+        $I->seeNumberOfElements('ul li a', 195);
     }
 }
