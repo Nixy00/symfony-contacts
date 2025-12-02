@@ -16,8 +16,11 @@ final class ContactFactory extends PersistentProxyObjectFactory
      *
      * @todo inject services if required
      */
+    private Transliterator $transliterator;
+
     public function __construct()
     {
+        $this->transliterator = Transliterator::create('Any-Lower; Latin-ASCII');
     }
 
     #[\Override]
@@ -53,7 +56,7 @@ final class ContactFactory extends PersistentProxyObjectFactory
 
     protected function normalizeName(string $name): string
     {
-        $nameLower = mb_strtolower(Transliterator::create('Any-Lower; Latin-ASCII')->transliterate($name));
+        $nameLower = mb_strtolower($this->transliterator->transliterate($name));
 
         return preg_replace('/[^a-z]/', '-', $nameLower);
     }
