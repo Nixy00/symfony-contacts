@@ -20,12 +20,20 @@ final class IndexCest
         $I->seeNumberOfElements('ul li a', 5);
     }
 
-    public function clickingFirstContactNavigatesToCorrectRoute(ControllerTester $I)
+    public function clickingSpecificContactNavigatesToCorrectRoute(ControllerTester $I): void
     {
+        $contactJoe = ContactFactory::createOne([
+            'firstname' => 'Joe',
+            'lastname' => 'Aaaaaaaaaaaaaaa',
+        ]);
+
         ContactFactory::createMany(5);
 
         $I->amOnPage('/contact');
-        $I->click('ul > li > a');
-        $I->seeCurrentRouteIs('app_contact_id');
+        $I->click('Aaaaaaaaaaaaaaa, Joe');
+        $I->seeResponseCodeIsSuccessful();
+        $I->seeCurrentRouteIs('app_contact_id', [
+            'id' => $contactJoe->getId(),
+        ]);
     }
 }
