@@ -107,7 +107,7 @@ Poussez la branche local
 
 `fix`: Fixe le code à l'aide des deux modules de CS Fixer (PHP & Twig),
 
-`test:codeception` : Vérifie le code à l'aide de Codeception,
+`test:codeception` : Nettoyage du répertoire « _output » et du code généré par Codeception puis destruction silencieuse forcée de la base de données, ensuite on fait la création silencieuse de la base de données mais aussi la création silencieuse du schéma de la base de données pour finir sur l'exécution des tests Codeception,
 
 `db` : Destruction forcée de la base de donnée puis création de la BD suivi de l'application des migrations successives sans questions interactives et enfin on génère des données factices sans questions interactives
 
