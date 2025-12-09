@@ -105,9 +105,11 @@ Poussez la branche local
 
 `test`: Vérifie le code à l'aide des deux modules de CS Fixer (PHP & Twig),
 
-`fix`: Fixe le code à l'aide des deux modules de CS Fixer (PHP & Twig)
+`fix`: Fixe le code à l'aide des deux modules de CS Fixer (PHP & Twig),
 
-`test:codeception` : Vérifie le code à l'aide de Codeception
+`test:codeception` : Vérifie le code à l'aide de Codeception,
+
+`db` : Destruction forcée de la base de donnée puis création de la BD suivi de l'application des migrations successives sans questions interactives et enfin on génère des données factices sans questions interactives
 
 Avant tout démarrage de script, ajouter Composer comme exemple ci-dessous :
 
