@@ -4,21 +4,26 @@ declare(strict_types=1);
 
 namespace App\Tests\Controller\Contact;
 
+use App\Factory\ContactFactory;
 use App\Tests\Support\ControllerTester;
 
 final class IndexCest
 {
     public function contactListContainsRightNumberOfContacts(ControllerTester $I)
     {
+        ContactFactory::createMany(5);
+
         $I->amOnPage('/contact');
         $I->seeResponseCodeIs(200);
         $I->seeInTitle('Liste des contacts');
         $I->see('Liste des contacts', 'h1');
-        $I->seeNumberOfElements('ul li a', 195);
+        $I->seeNumberOfElements('ul li a', 5);
     }
 
     public function clickingFirstContactNavigatesToCorrectRoute(ControllerTester $I)
     {
+        ContactFactory::createMany(5);
+
         $I->amOnPage('/contact');
         $I->click('ul > li > a');
         $I->seeCurrentRouteIs('app_contact_id');
