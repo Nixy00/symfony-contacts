@@ -106,7 +106,10 @@
             "@fix:twigcs"
         ],
         "test:codeception": [
-            "codecept clean",
+            "php vendor/bin/codecept clean",
+            "bin/console doctrine:database:drop --force --quiet --env=test",
+            "bin/console doctrine:database:create --quiet --env=test",
+            "bin/console doctrine:schema:create --quiet --env=test",
             "php vendor/bin/codecept run"
         ],
         "db": [
