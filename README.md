@@ -49,7 +49,7 @@ Placez-vous le répertoire de l'application
 
 Dans le terminal, lancez le serveur Web local avec la commande suivante : 
 
-	symfony serve
+	composer start
 
 Suivez les instructions données dans la partie « Gestion du certificat du serveur Web de l'API dans le navigateur » du tutoriel « [Configuration CORS pour utiliser l'authentification de l'API avec React](http://cutrona/tutoriels/cors-api-react/#gestion-du-certificat-du-serveur-web-de-l-api-dans-le-navigateur) » 
 
@@ -111,6 +111,25 @@ Poussez la branche local
 
 `db` : Destruction forcée de la base de donnée puis création de la BD suivi de l'application des migrations successives sans questions interactives et enfin on génère des données factices sans questions interactives
 
-Avant tout démarrage de script, ajouter Composer comme exemple ci-dessous :
+Avant tout démarrage de script, ajouter Composer comme exemple ci-dessous (ci ce n'est déjà pas fait) :
 
-    composer start
+    composer install
+
+## Configuration de la base de données
+
+Pour configurer la base de données, il suffit de copier le fichier .env en .env.local. 
+Ensuite ouvrez le fichier de la configuration locale du projet et modifiez la configuration base de données pour :
+    
+- Utiliser votre compte MySQL en lieu et place de l'utilisateur « web »
+- Modifiez la base de données utilisée en « votre_login_contact »
+- Mettez la valeur du paramètre « serverVersion » en accord avec le serveur MySQL du département, à savoir « mariadb-10.2.25 
+
+PS : Pensez à mettre en commentaire l'ancien DATABASE_URL par la ligne suivante dans le fichier .env : 
+    
+    DATABASE_URL="mysql://app:!ChangeMe!@127.0.0.1:3306/app?serverVersion=10.2.25-MariaDB&charset=utf8mb4"
+
+Enfin, lancez la création de la base de données : 
+
+    bin/console doctrine:database:create
+
+Sur [phpMyAdmin](http://phpmyadmin/), vérifiez que la base a bien été créée.
