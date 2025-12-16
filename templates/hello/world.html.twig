@@ -2,7 +2,7 @@
 
 {% block title %}Hello {{ name }}!{% endblock %}
 
-{% block body %}
+{% block main %}
     {% for i in range(1, 10) %}
         <p style="color: {{ cycle(['red', 'green'], loop.index0) }};">
             Hello {{ name|capitalize }}! ({{ '%02d'|format(i) }})
