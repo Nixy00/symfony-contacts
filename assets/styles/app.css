@@ -1,3 +1,7 @@
 body {
     background-color: lightskyblue;
 }
+.lastname {
+    font-weight: bold;
+    font-variant: small-caps;
+}
