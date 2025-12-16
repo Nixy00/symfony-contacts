@@ -9,7 +9,8 @@
         {% for contact in contacts %}
             <li>
                 <a href="{{ path('app_contact_id', {id: contact.id}) }}">
-                    {{ contact.lastname }}, {{ contact.firstname }}
+                    <span class="lastname">{{ contact.lastname }}</span>,
+                    <span class="firstname">{{ contact.firstname }}</span>
                 </a>
             </li>
         {% else %}
