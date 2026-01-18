@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des contacts{% endblock %}
+{% block title %}
+    Liste des contacts{% if app.request.query.get('search') %} contenant "{{ app.request.query.get('search') }}"{% endif %}
+{% endblock %}
 
 {% block main %}
     <form method="get" action="{{ path('app_contact') }}" class="mb-3">
-        <input type="text" name="search" placeholder="Rechercher un contact">
+        <input type="text" name="search" value="{{ app.request.query.get('search') }}" placeholder="Rechercher un contact">
         <button type="submit">Rechercher</button>
     </form>
 
