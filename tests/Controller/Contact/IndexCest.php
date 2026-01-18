@@ -65,4 +65,14 @@ final class IndexCest
         $I->assertEquals($expectedLastNames, $displayedLastNames);
         $I->assertEquals($expectedFirstNames, $displayedFirstNames);
     }
+
+    public function searchFormCanBeFilledAndSent(ControllerTester $I): void
+    {
+        $I->amOnPage('/contact');
+        $I->seeResponseCodeIsSuccessful();
+        $I->fillField('search', 'foo');
+        $I->click('Rechercher');
+        $I->seeCurrentRouteIs('app_contact');
+        $I->seeInCurrentUrl('search=foo');
+    }
 }
