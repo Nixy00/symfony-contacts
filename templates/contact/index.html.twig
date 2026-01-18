@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Liste des contacts{% if app.request.query.get('search') %} contenant "{{ app.request.query.get('search') }}"{% endif %}
+    Liste des contacts{% if app.request.query.get('search') %} contenant <em class="text-secondary">{{ app.request.query.get('search') }}</em>{% endif %}
 {% endblock %}
 
 {% block main %}
