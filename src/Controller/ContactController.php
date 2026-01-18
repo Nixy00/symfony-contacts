@@ -13,12 +13,11 @@ final class ContactController extends AbstractController
     #[Route('/contact', name: 'app_contact')]
     public function index(ContactRepository $contactRepository): Response
     {
-        $contacts = $contactRepository->findBy(
-            [],
-            ['lastname' => 'ASC', 'firstname' => 'ASC']
-        );
+        $contacts = $contactRepository->search(null);
 
-        return $this->render('contact/index.html.twig', ['contacts' => $contacts]);
+        return $this->render('contact/index.html.twig', [
+            'contacts' => $contacts,
+        ]);
     }
 
     #[Route('/contact/{id}', name: 'app_contact_id', requirements: ['id' => '\d+'])]
