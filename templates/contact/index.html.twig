@@ -3,7 +3,7 @@
 {% block title %}Liste des contacts{% endblock %}
 
 {% block main %}
-    <ul>
+    <ul class="contacts">
         {% for contact in contacts %}
             <li>
                 <a href="{{ path('app_contact_id', {id: contact.id}) }}">
