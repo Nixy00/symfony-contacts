@@ -3,6 +3,10 @@
 {% block title %}Liste des contacts{% endblock %}
 
 {% block main %}
+    <p>
+        <a href="{{ path('app_contact', {'search': 'le'}) }}">Voir les contacts contenant "le"</a>
+    </p>
+
     <ul class="contacts">
         {% for contact in contacts %}
             <li>
