@@ -5,6 +5,12 @@
 {% endblock %}
 
 {% block main %}
+
+    <form method="get" action="{{ path('app_contact') }}" class="mb-3">
+        <input type="text" name="search" value="{{ app.request.query.get('search') }}" placeholder="Rechercher un contact">
+        <button type="submit">Rechercher</button>
+    </form>
+
     <dl>
         <dt>Prénom</dt>
         <dd>{{ contact.firstname }}</dd>
