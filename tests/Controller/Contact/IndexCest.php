@@ -75,4 +75,37 @@ final class IndexCest
         $I->seeCurrentRouteIs('app_contact');
         $I->seeInCurrentUrl('search=foo');
     }
+
+    public function searchResultRestrictsContactList(ControllerTester $I): void
+    {
+        $contact1 = ContactFactory::createOne([
+            'lastname' => 'Leclerc',
+            'firstname' => 'Alice',
+        ]);
+        $contact2 = ContactFactory::createOne([
+            'lastname' => 'Martin',
+            'firstname' => 'Félix',
+        ]);
+        $contact3 = ContactFactory::createOne([
+            'lastname' => 'Dupont',
+            'firstname' => 'Lea',
+        ]);
+        $contact4 = ContactFactory::createOne([
+            'lastname' => 'Legrand',
+            'firstname' => 'Leo',
+        ]);
+        $I->amOnPage('/contact?search=Le');
+        $I->seeResponseCodeIsSuccessful();
+        $contactTexts = $I->grabMultiple('ul.contacts li a');
+        $expectedContacts = [
+            'Leclerc, Alice',
+            'Dupont, Lea',
+            'Legrand, Leo',
+        ];
+        foreach ($expectedContacts as $expected) {
+            $I->assertContains($expected, $contactTexts);
+        }
+        $I->seeInField('search', 'Le');
+    }
+
 }
