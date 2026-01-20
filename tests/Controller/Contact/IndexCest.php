@@ -107,5 +107,4 @@ final class IndexCest
         }
         $I->seeInField('search', 'Le');
     }
-
 }
