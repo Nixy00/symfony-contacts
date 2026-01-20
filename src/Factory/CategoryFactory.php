@@ -36,10 +36,10 @@ final class CategoryFactory extends PersistentProxyObjectFactory
         $faker = self::faker();
 
         $word = $faker->word();
-        $nameCategory = mb_convert_case($word, MB_CASE_TITLE, "UTF-8");
+        $nameCategory = mb_convert_case($word, MB_CASE_TITLE, 'UTF-8');
 
         return [
-            'name' => self::faker()->text(30),
+            'name' => $nameCategory,
         ];
     }
 
