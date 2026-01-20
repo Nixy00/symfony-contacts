@@ -68,7 +68,12 @@ final class ContactFactory extends PersistentProxyObjectFactory
     protected function initialize(): static
     {
         return $this
-            // ->afterInstantiate(function(Contact $contact): void {})
-        ;
+            ->afterInstantiate(function (Contact $contact): void {
+                $faker = self::faker();
+
+                if ($faker->boolean(90)) {
+                    $contact->setCategory(CategoryFactory::random());
+                }
+            });
     }
 }
