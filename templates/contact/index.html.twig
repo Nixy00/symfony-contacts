@@ -13,10 +13,7 @@
     <ul class="contacts">
         {% for contact in contacts %}
             <li>
-                <a href="{{ path('app_contact_id', {id: contact.id}) }}">
-                    <span class="lastname">{{ contact.lastname }}</span>,
-                    <span class="firstname">{{ contact.firstname }}</span>
-                </a>
+                <a href="{{ path('app_contact_id', {id: contact.id}) }}">{{ contact.lastname }}, {{ contact.firstname }}</a>
             </li>
         {% else %}
             <li>Aucun contact trouvé.</li>
