@@ -50,6 +50,7 @@ final class ContactFactory extends PersistentProxyObjectFactory
             'firstname' => $firstname,
             'lastname' => $lastname,
             'email' => "{$firstnameLower}.{$lastnameLower}@{$domain}",
+            'phone' => $faker->phoneNumber(),
         ];
     }
 
