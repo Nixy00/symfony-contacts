@@ -36,22 +36,27 @@ final class ContactFactory extends PersistentProxyObjectFactory
     #[\Override]
     protected function defaults(): array|callable
     {
-        $faker = self::faker();
+        return function () {
+            $faker = self::faker();
 
-        $firstname = $faker->firstName();
-        $lastname = $faker->lastName();
+            $firstname = $faker->firstName();
+            $lastname = $faker->lastName();
 
-        $firstnameLower = $this->normalizeName($firstname);
-        $lastnameLower = $this->normalizeName($lastname);
+            $firstnameLower = $this->normalizeName($firstname);
+            $lastnameLower = $this->normalizeName($lastname);
 
-        $domain = $faker->domainName();
+            $domain = $faker->domainName();
 
-        return [
-            'firstname' => $firstname,
-            'lastname' => $lastname,
-            'email' => "{$firstnameLower}.{$lastnameLower}@{$domain}",
-            'phone' => $faker->phoneNumber(),
-        ];
+            return [
+                'firstname' => $firstname,
+                'lastname' => $lastname,
+                'email' => "{$firstnameLower}.{$lastnameLower}@{$domain}",
+                'phone' => $faker->phoneNumber(),
+                'category' => $faker->boolean(90)
+                    ? CategoryFactory::random()
+                    : null,
+            ];
+        };
     }
 
     protected function normalizeName(string $name): string
@@ -67,13 +72,7 @@ final class ContactFactory extends PersistentProxyObjectFactory
     #[\Override]
     protected function initialize(): static
     {
-        return $this
-            ->afterInstantiate(function (Contact $contact): void {
-                $faker = self::faker();
+        return $this;
 
-                if ($faker->boolean(90)) {
-                    $contact->setCategory(CategoryFactory::random());
-                }
-            });
     }
 }
