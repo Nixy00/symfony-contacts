@@ -7,13 +7,11 @@
                     <span class="firstname">{{ contact.firstname }}</span>
                 </a>
 
-                {% if contact.category is not null %}
-                    <a href="{{ path('app_category_show', { id: contact.category.id }) }}" class="badge bg-primary nav-link">
-                        {{ contact.category.name }}
-                    </a>
-                {% else %}
-                    <span class="badge bg-secondary">
-                        Sans catégorie
+                {% if show_category??true and contact.category is not null %}
+                    <span class="badge bg-primary">
+                        <a href="{{ path('app_category_show', {id: contact.category.id}) }}" class="nav-link text-white p-0">
+                            {{ contact.category.name }}
+                        </a>
                     </span>
                 {% endif %}
             </li>
