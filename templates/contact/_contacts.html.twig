@@ -2,7 +2,7 @@
     <ul class="contacts list-group">
         {% for contact in contacts %}
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <a href="{{ path('app_contact_id', { id: contact.id }) }}">
+                <a href="{{ path('app_contact_id', { id: contact.id }) }}" class="contact-link">
                     <span class="lastname">{{ contact.lastname }}</span>,
                     <span class="firstname">{{ contact.firstname }}</span>
                 </a>

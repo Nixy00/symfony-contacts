@@ -19,7 +19,7 @@ final class IndexCest
         $I->seeResponseCodeIs(200);
         $I->seeInTitle('Liste des contacts');
         $I->see('Liste des contacts', 'h1');
-        $I->seeNumberOfElements('ul.contacts li a', 5);
+        $I->seeNumberOfElements('a.contact-link', 5);
     }
 
     public function clickingSpecificContactNavigatesToCorrectRoute(ControllerTester $I): void
@@ -54,7 +54,7 @@ final class IndexCest
         ]);
 
         $I->amOnPage('/contact');
-        $contactTexts = $I->grabMultiple('ul.contacts li a');
+        $contactTexts = $I->grabMultiple('a.contact-link');
 
         $displayedLastNames = [];
         $displayedFirstNames = [];
