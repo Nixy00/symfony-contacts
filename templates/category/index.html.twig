@@ -4,10 +4,14 @@
 
 {% block main %}
     <div class="container mt-3">
+        <h2>Liste des catégories</h2>
+
         <ul class="list-group">
             {% for category in categories %}
                 <li class="list-group-item">
-                    {{ category.name }}
+                    <a href="{{ path('app_category_show', {id: category.id}) }}">
+                        {{ category.name }}
+                    </a>
                 </li>
             {% else %}
                 <li class="list-group-item text-muted">
