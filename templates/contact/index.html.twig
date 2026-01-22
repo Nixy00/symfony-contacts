@@ -10,14 +10,6 @@
         <button type="submit">Rechercher</button>
     </form>
 
-    <ul class="contacts">
-        {% for contact in contacts %}
-            <li>
-                <a href="{{ path('app_contact_id', {id: contact.id}) }}">{{ contact.lastname }}, {{ contact.firstname }}</a>
-            </li>
-        {% else %}
-            <li>Aucun contact trouvé.</li>
-        {% endfor %}
-    </ul>
+    {% include 'contact/_contacts.html.twig' %}
 
 {% endblock %}
