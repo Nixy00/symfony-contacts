@@ -1,9 +1,15 @@
-<ul class="contacts">
-    {% for contact in contacts %}
-        <li>
-            <a href="{{ path('app_contact_id', {id: contact.id}) }}">{{ contact.lastname }}, {{ contact.firstname }}</a>
-        </li>
-    {% else %}
-        <li>Aucun contact trouvé.</li>
-    {% endfor %}
-</ul>
+<div class="container mt-3">
+    <ul class="list-group">
+        {% for contact in contacts %}
+            <li class="list-group-item">
+                <a href="{{ path('app_contact_id', {id: contact.id}) }}">
+                    {{ contact.lastname }}, {{ contact.firstname }}
+                </a>
+            </li>
+        {% else %}
+            <li class="list-group-item text-muted">
+                Aucun contact
+            </li>
+        {% endfor %}
+    </ul>
+</div>
