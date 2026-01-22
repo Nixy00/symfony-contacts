@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 
 final class ContactController extends AbstractController
 {
@@ -22,8 +23,12 @@ final class ContactController extends AbstractController
     }
 
     #[Route('/contact/{id}', name: 'app_contact_id', requirements: ['id' => '\d+'])]
-    public function show(Contact $contact): Response
-    {
-        return $this->render('contact/show.html.twig', ['contact' => $contact]);
+    public function show(
+        #[MapEntity(expr: 'repository.findWithCategory(id)')]
+        Contact $contact,
+    ): Response {
+        return $this->render('contact/show.html.twig', [
+            'contact' => $contact,
+        ]);
     }
 }
