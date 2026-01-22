@@ -4,14 +4,15 @@
 
 {% block main %}
     <div class="container mt-3">
-        <h2>Liste des catégories</h2>
-
         <ul class="list-group">
-            {% for category in categories %}
-                <li class="list-group-item">
+            {% for item in categories %}
+                {% set category = item.category %}
+                {% set count = item.count %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
                     <a href="{{ path('app_category_show', {id: category.id}) }}">
                         {{ category.name }}
                     </a>
+                    <span class="badge bg-primary rounded-pill">{{ count }}</span>
                 </li>
             {% else %}
                 <li class="list-group-item text-muted">
