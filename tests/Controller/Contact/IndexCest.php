@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace App\Tests\Controller\Contact;
 
 use App\Factory\ContactFactory;
+use App\Factory\CategoryFactory;
 use App\Tests\Support\ControllerTester;
 
 final class IndexCest
 {
     public function contactListContainsRightNumberOfContacts(ControllerTester $I)
     {
+        CategoryFactory::createMany(3);
         ContactFactory::createMany(5);
 
         $I->amOnPage('/contact');
@@ -22,6 +24,8 @@ final class IndexCest
 
     public function clickingSpecificContactNavigatesToCorrectRoute(ControllerTester $I)
     {
+        CategoryFactory::createMany(3);
+
         $contactJoe = ContactFactory::createOne([
             'firstname' => 'Joe',
             'lastname' => 'Aaaaaaaaaaaaaaa',
@@ -39,6 +43,8 @@ final class IndexCest
 
     public function contactsAreWellSorted(ControllerTester $I): void
     {
+        CategoryFactory::createMany(3);
+
         ContactFactory::createSequence([
             ['lastName' => 'Zola',     'firstName' => 'Anne'],
             ['lastName' => 'Dupont',   'firstName' => 'Claire'],
@@ -68,6 +74,8 @@ final class IndexCest
 
     public function searchFormCanBeFilledAndSent(ControllerTester $I): void
     {
+        CategoryFactory::createMany(3);
+
         $I->amOnPage('/contact');
         $I->seeResponseCodeIsSuccessful();
         $I->fillField('search', 'foo');
@@ -78,6 +86,8 @@ final class IndexCest
 
     public function searchResultRestrictsContactList(ControllerTester $I): void
     {
+        CategoryFactory::createMany(3);
+
         $contact1 = ContactFactory::createOne([
             'lastname' => 'Leclerc',
             'firstname' => 'Alice',
