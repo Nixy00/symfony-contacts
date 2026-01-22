@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Category;
 use App\Entity\Contact;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -35,6 +36,12 @@ class ContactRepository extends ServiceEntityRepository
 
     public function findWithCategory(int $id): ?Contact
     {
-
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.category', 'category')
+            ->addSelect('category')
+            ->where('c.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }
