@@ -15,6 +15,7 @@ final class CategoryController extends AbstractController
     {
         $categories = $categoryRepository->createQueryBuilder('c')
             ->leftJoin('c.contacts', 'contact')
+            ->groupBy('c.id')
             ->orderBy('c.name', 'ASC')
             ->getQuery()
             ->getResult();
