@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Controller\Contact;
 
-use App\Factory\ContactFactory;
 use App\Factory\CategoryFactory;
+use App\Factory\ContactFactory;
 use App\Tests\Support\ControllerTester;
 
 final class IndexCest
 {
-    public function contactListContainsRightNumberOfContacts(ControllerTester $I)
+    public function contactListContainsRightNumberOfContacts(ControllerTester $I): void
     {
         CategoryFactory::createMany(3);
         ContactFactory::createMany(5);
@@ -22,7 +22,7 @@ final class IndexCest
         $I->seeNumberOfElements('ul.contacts li a', 5);
     }
 
-    public function clickingSpecificContactNavigatesToCorrectRoute(ControllerTester $I)
+    public function clickingSpecificContactNavigatesToCorrectRoute(ControllerTester $I): void
     {
         CategoryFactory::createMany(3);
 
@@ -59,7 +59,8 @@ final class IndexCest
         $displayedLastNames = [];
         $displayedFirstNames = [];
 
-        foreach ($contactTexts as $text) {
+        foreach ($contactTexts as $html) {
+            $text = strip_tags($html);
             [$lastName, $firstName] = array_map('trim', explode(',', $text));
             $displayedLastNames[] = $lastName;
             $displayedFirstNames[] = $firstName;
@@ -106,14 +107,18 @@ final class IndexCest
         ]);
         $I->amOnPage('/contact?search=Le');
         $I->seeResponseCodeIsSuccessful();
+
         $contactTexts = $I->grabMultiple('ul.contacts li a');
+
+        $contactTexts = array_map(fn ($text) => trim(preg_replace('/\s+/', ' ', strip_tags($text))), $contactTexts);
+
         $expectedContacts = [
             'Leclerc, Alice',
             'Dupont, Lea',
             'Legrand, Leo',
         ];
         foreach ($expectedContacts as $expected) {
-            $I->assertContains($expected, $contactTexts);
+            $I->assertContains($expected, $contactTexts, "Le contact '$expected' n'a pas été trouvé");
         }
         $I->seeInField('search', 'Le');
     }

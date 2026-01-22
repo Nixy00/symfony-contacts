@@ -1,9 +1,10 @@
 <div class="container mt-3">
-    <ul class="list-group">
+    <ul class="contacts list-group">
         {% for contact in contacts %}
             <li class="list-group-item">
                 <a href="{{ path('app_contact_id', {id: contact.id}) }}">
-                    {{ contact.lastname }}, {{ contact.firstname }}
+                    <span class="lastname">{{ contact.lastname }}</span>,
+                    <span class="firstname">{{ contact.firstname }}</span>
                 </a>
             </li>
         {% else %}
