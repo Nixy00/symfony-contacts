@@ -8,9 +8,9 @@
                 </a>
 
                 {% if contact.category %}
-                    <span class="badge bg-primary">
+                    <a href="{{ path('app_category_show', { id: contact.category.id }) }}" class="badge bg-primary nav-link">
                         {{ contact.category.name }}
-                    </span>
+                    </a>
                 {% else %}
                     <span class="badge bg-secondary">
                         Sans catégorie
