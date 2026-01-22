@@ -21,6 +21,8 @@ final class CategoryController extends AbstractController
             ->getQuery()
             ->getResult();
 
+        dump($categories);
+
         return $this->render('category/index.html.twig', [
             'categories' => $categories,
         ]);
