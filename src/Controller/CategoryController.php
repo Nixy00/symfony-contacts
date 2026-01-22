@@ -14,6 +14,7 @@ final class CategoryController extends AbstractController
     public function index(CategoryRepository $categoryRepository): Response
     {
         $categories = $categoryRepository->createQueryBuilder('c')
+            ->select('c as category')
             ->leftJoin('c.contacts', 'contact')
             ->addSelect('COUNT(contact) as count')
             ->groupBy('c.id')
