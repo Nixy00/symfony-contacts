@@ -6,6 +6,6 @@
     <div class="container mt-3">
         <h2>Contacts dans la catégorie "{{ category.name }}"</h2>
 
-        {% include 'contact/_contacts.html.twig' with { contacts: contacts } %}
+        {% include 'contact/_contacts.html.twig' with { contacts: contacts, show_category: false } %}
     </div>
 {% endblock %}
