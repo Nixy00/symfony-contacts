@@ -1,11 +1,21 @@
 <div class="container mt-3">
     <ul class="contacts list-group">
         {% for contact in contacts %}
-            <li class="list-group-item">
-                <a href="{{ path('app_contact_id', {id: contact.id}) }}">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{{ path('app_contact_id', { id: contact.id }) }}">
                     <span class="lastname">{{ contact.lastname }}</span>,
                     <span class="firstname">{{ contact.firstname }}</span>
                 </a>
+
+                {% if contact.category %}
+                    <span class="badge bg-primary">
+                        {{ contact.category.name }}
+                    </span>
+                {% else %}
+                    <span class="badge bg-secondary">
+                        Sans catégorie
+                    </span>
+                {% endif %}
             </li>
         {% else %}
             <li class="list-group-item text-muted">
