@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégorie: {{ category.name }}{% endblock %}
+
+{% block main %}
+    <div class="container mt-3">
+        <h2>Contacts dans la catégorie "{{ category.name }}"</h2>
+
+        {% include 'contact/_contacts.html.twig' with { contacts: contacts } %}
+    </div>
+{% endblock %}
