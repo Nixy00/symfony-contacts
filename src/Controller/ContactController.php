@@ -32,7 +32,7 @@ final class ContactController extends AbstractController
         ]);
     }
 
-    #[Route('/contact/{id}/update', name: 'app_contact_update')]
+    #[Route('/contact/{id}/update', name: 'app_contact_update', requirements: ['id' => '\d+'])]
     public function update(Contact $contact): Response
     {
         return new Response();
@@ -44,7 +44,7 @@ final class ContactController extends AbstractController
         return new Response();
     }
 
-    #[Route('/contact/{id}/delete', name: 'app_contact_delete')]
+    #[Route('/contact/{id}/delete', name: 'app_contact_delete', requirements: ['id' => '\d+'])]
     public function delete(Contact $contact): Response
     {
         return new Response();
