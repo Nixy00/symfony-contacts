@@ -33,20 +33,24 @@ final class ContactController extends AbstractController
     }
 
     #[Route('/contact/{id}/update', name: 'app_contact_update', requirements: ['id' => '\d+'])]
-    public function update(Contact $contact): Response
+    public function update(#[MapEntity] Contact $contact): Response
     {
-        return new Response();
+        return $this->render('contact/update.html.twig', [
+            'contact' => $contact,
+        ]);
     }
 
     #[Route('/contact/create', name: 'app_contact_create')]
     public function create(): Response
     {
-        return new Response();
+        return $this->render('contact/create.html.twig');
     }
 
     #[Route('/contact/{id}/delete', name: 'app_contact_delete', requirements: ['id' => '\d+'])]
-    public function delete(Contact $contact): Response
+    public function delete(#[MapEntity] Contact $contact): Response
     {
-        return new Response();
+        return $this->render('contact/delete.html.twig', [
+            'contact' => $contact,
+        ]);
     }
 }

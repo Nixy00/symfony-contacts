@@ -53,7 +53,7 @@ final class ContactFactory extends PersistentProxyObjectFactory
                 'email' => "{$firstnameLower}.{$lastnameLower}@{$domain}",
                 'phone' => $faker->phoneNumber(),
                 'category' => $faker->boolean(90)
-                    ? CategoryFactory::random()
+                    ? CategoryFactory::findOrCreate([])
                     : null,
             ];
         };
