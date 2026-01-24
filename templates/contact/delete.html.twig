@@ -6,7 +6,7 @@
     <h1>Suppression de {{ contact.lastname }}, {{ contact.firstname }}</h1>
 
     {{ form_start(form) }}
-    {{ form_row(form.delete, { label: 'Supprimer' }) }}
-    {{ form_row(form.cancel, { label: 'Annuler' }) }}
+    {{ form_row(form.delete, { label: 'Supprimer', attr: { class: 'btn btn-primary' } }) }}
+    {{ form_row(form.cancel, { label: 'Annuler', attr: { class: 'btn btn-secondary' } }) }}
     {{ form_end(form) }}
 {% endblock %}
