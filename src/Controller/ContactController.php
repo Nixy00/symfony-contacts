@@ -59,6 +59,8 @@ final class ContactController extends AbstractController
     {
         $contact = new Contact();
 
+        $form = $this->createForm(ContactType::class, $contact);
+
         return $this->render('contact/create.html.twig');
     }
 
