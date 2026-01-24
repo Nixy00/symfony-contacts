@@ -43,7 +43,9 @@ final class ContactController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-            return $this->redirectToRoute('app_contact_id', ['id' => $contact->getId()]);
+            return $this->redirectToRoute('app_contact_id', [
+                'id' => $contact->getId(),
+            ]);
         }
 
         return $this->render('contact/update.html.twig', [
