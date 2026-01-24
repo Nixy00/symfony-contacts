@@ -79,7 +79,7 @@ final class ContactController extends AbstractController
     }
 
     #[Route('/contact/{id}/delete', name: 'app_contact_delete', requirements: ['id' => '\d+'])]
-    public function delete(#[MapEntity] Contact $contact, Request $request): Response
+    public function delete(#[MapEntity] Contact $contact, Request $request, EntityManagerInterface $em): Response
     {
         $form = $this->createFormBuilder()
             ->add('delete', SubmitType::class)
@@ -87,6 +87,16 @@ final class ContactController extends AbstractController
             ->getForm();
 
         $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            if ($form->get('delete')->isClicked()) {
+                $em->remove($contact);
+                $em->flush();
+
+                return $this->redirectToRoute('app_contact');
+            }
+            return $this->redirectToRoute('app_contact_id', ['id' => $contact->getId()]);
+        }
 
         return $this->render('contact/delete.html.twig', [
             'contact' => $contact,
