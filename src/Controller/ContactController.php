@@ -8,6 +8,7 @@ use App\Repository\ContactRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
@@ -43,6 +44,7 @@ final class ContactController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
+
             return $this->redirectToRoute('app_contact_id', [
                 'id' => $contact->getId(),
             ]);
@@ -79,6 +81,12 @@ final class ContactController extends AbstractController
     #[Route('/contact/{id}/delete', name: 'app_contact_delete', requirements: ['id' => '\d+'])]
     public function delete(#[MapEntity] Contact $contact): Response
     {
+        $form = $this->createFormBuilder()
+            ->add('delete', SubmitType::class)
+            ->add('cancel', SubmitType::class)
+            ->getForm();
+
+
         return $this->render('contact/delete.html.twig', [
             'contact' => $contact,
         ]);
