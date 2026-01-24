@@ -55,11 +55,20 @@ final class ContactController extends AbstractController
     }
 
     #[Route('/contact/create', name: 'app_contact_create')]
-    public function create(): Response
+    public function create(Request $request, EntityManagerInterface $em): Response
     {
         $contact = new Contact();
 
         $form = $this->createForm(ContactType::class, $contact);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($contact);
+            $em->flush();
+
+            return $this->redirectToRoute('app_contact_id', ['id' => $contact->getId()]);
+        }
 
         return $this->render('contact/create.html.twig', [
             'contact' => $contact,
