@@ -15,15 +15,40 @@ class Contact
     private ?int $id = null;
 
     #[ORM\Column(length: 30)]
+    #[Assert\NotBlank(message: 'Le prénom est obligatoire.')]
+    #[Assert\Length(
+        max: 30,
+        maxMessage: 'Le prénom ne peut pas dépasser {{ limit }} caractères.'
+    )]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 40)]
+    #[Assert\NotBlank(message: 'Le nom est obligatoire.')]
+    #[Assert\Length(
+        max: 40,
+        maxMessage: 'Le nom ne peut pas dépasser {{ limit }} caractères.'
+    )]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: "L'adresse e-mail est obligatoire.")]
+    #[Assert\Length(
+        max: 100,
+        maxMessage: "L'e-mail ne peut pas dépasser {{ limit }} caractères."
+    )]
+    #[Assert\Email(message: "L'e-mail '{{ value }}' n'est pas valide.")]
     private ?string $email = null;
 
     #[ORM\Column(length: 20)]
+    #[Assert\NotBlank(message: 'Le numéro de téléphone est obligatoire.')]
+    #[Assert\Length(
+        max: 20,
+        maxMessage: 'Le numéro de téléphone ne peut pas dépasser {{ limit }} caractères.'
+    )]
+    #[Assert\Regex(
+        pattern: '/^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4})$/',
+        message: 'Format de téléphone invalide'
+    )]
     private ?string $phone = null;
 
     #[ORM\ManyToOne(inversedBy: 'contacts')]
