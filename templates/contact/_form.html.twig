@@ -4,5 +4,5 @@
     {{ form_row(form.email, { label: 'Adresse e-mail' }) }}
     {{ form_row(form.phone, { label: 'Téléphone' }) }}
     {{ form_row(form.category, { label: 'Catégorie', placeholder: 'Catégorie ?' }) }}
-<button type="submit" class="btn btn-primary w-100">{{ submit_label|default('Ajouter') }}</button>
+    <button type="submit" class="btn btn-primary w-100">{{ submit_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}
