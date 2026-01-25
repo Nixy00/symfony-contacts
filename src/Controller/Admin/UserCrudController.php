@@ -55,7 +55,18 @@ class UserCrudController extends AbstractCrudController
 
             EmailField::new('email', 'Email'),
 
-            ArrayField::new('roles', 'Rôles'),
+            ArrayField::new('roles', 'Rôles')
+                ->formatValue(function ($value, $entity) {
+                    if (in_array('ROLE_ADMIN', $value, true)) {
+                        return '<i class="fa fa-user"></i>';
+                    }
+
+                    if (in_array('ROLE_USER', $value, true)) {
+                        return '<i class="fa fa-user-gear"></i>';
+                    }
+
+                    return '';
+                }),
 
             TextField::new('plainPassword', 'Mot de passe')
                 ->onlyOnForms()
