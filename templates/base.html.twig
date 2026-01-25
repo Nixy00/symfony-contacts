@@ -47,9 +47,9 @@
                         <input class="form-control me-2" type="search" placeholder="Recherche" aria-label="Search"/>
                         <button class="btn btn-outline-success" type="submit">Recherche</button>
                 {% if app.user %}
-                    <a href="#" class="btn btn-secondary ms-2">Déconnexion</a>
+                    <a href="{{ path('app_logout') }}" class="btn btn-secondary ms-2">Déconnexion</a>
                 {% else %}
-                    <a href="#" class="btn btn-primary ms-2">Connexion</a>
+                    <a href="{{ path('app_login') }}" class="btn btn-primary ms-2">Connexion</a>
                 {% endif %}
                     </form>
                 </div>
