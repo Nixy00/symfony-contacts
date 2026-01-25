@@ -31,6 +31,9 @@ class ContactCrudController extends AbstractCrudController
                 ->setFormTypeOption('query_builder', function (EntityRepository $er) {
                     return $er->createQueryBuilder('c')
                         ->orderBy('c.name', 'ASC');
+                })
+                ->formatValue(function ($value, $entity) {
+                    return $value?->getName();
                 }),
         ];
     }
