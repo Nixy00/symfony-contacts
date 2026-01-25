@@ -26,7 +26,8 @@ class ContactCrudController extends AbstractCrudController
             TextField::new('firstname', 'Prénom'),
             EmailField::new('email', 'Email'),
 
-            AssociationField::new('category', 'Catégorie'),
+            AssociationField::new('category', 'Catégorie')
+                ->setFormTypeOption('choice_label', 'name'),
         ];
     }
 }
