@@ -26,4 +26,16 @@ class UpdateCest
         $I->seeInTitle('Édition de Simpson, Homer');
         $I->see('Édition de Simpson, Homer', 'h1');
     }
+
+    public function accessIsRestrictedToAuthenticatedUsers(ControllerTester $I): void
+    {
+        $contact = ContactFactory::createOne([
+            'firstname' => 'Bart',
+            'lastname' => 'Simpson',
+        ]);
+
+        $I->amOnPage('/contact/'.$contact->getId().'/update');
+
+        $I->seeCurrentRouteIs('app_login');
+    }
 }
