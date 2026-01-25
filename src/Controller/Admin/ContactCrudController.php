@@ -20,7 +20,7 @@ class ContactCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id')->hideOnForm(),
+            IdField::new('id', 'Identifiant')->hideOnForm(),
 
             TextField::new('lastname', 'Nom'),
             TextField::new('firstname', 'Prénom'),
