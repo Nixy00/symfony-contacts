@@ -3,13 +3,13 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -29,6 +29,16 @@ class UserCrudController extends AbstractCrudController
             EmailField::new('email', 'Email'),
 
             ArrayField::new('roles', 'Rôles'),
+
+            TextField::new('plainPassword', 'Mot de passe')
+                ->onlyOnForms()
+                ->setFormType(PasswordType::class)
+                ->setFormTypeOption('required', false)
+                ->setFormTypeOption('mapped', false)
+                ->setFormTypeOption('empty_data', '')
+                ->setFormTypeOption('attr', [
+                    'autocomplete' => 'new-password',
+                ]),
         ];
     }
 
