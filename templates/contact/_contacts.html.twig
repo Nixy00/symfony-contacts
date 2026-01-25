@@ -2,10 +2,20 @@
     <ul class="contacts list-group">
         {% for contact in contacts %}
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <a href="{{ path('app_contact_id', { id: contact.id }) }}" class="contact-link">
-                    <span class="lastname">{{ contact.lastname }}</span>,
-                    <span class="firstname">{{ contact.firstname }}</span>
-                </a>
+                <div class="d-flex align-items-center gap-2">
+                    <a href="{{ path('app_contact_update', { id: contact.id }) }}">
+                        <span class="material-symbols-outlined">edit</span>
+                    </a>
+
+                    <a href="{{ path('app_contact_delete', { id: contact.id }) }}">
+                        <span class="material-symbols-outlined">delete</span>
+                    </a>
+
+                    <a href="{{ path('app_contact_id', { id: contact.id }) }}" class="contact-link">
+                        <span class="lastname">{{ contact.lastname }}</span>,
+                        <span class="firstname">{{ contact.firstname }}</span>
+                    </a>
+                </div>
 
                 {% if show_category??true and contact.category is not null %}
                     <span class="badge bg-primary">
