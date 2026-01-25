@@ -133,3 +133,14 @@ Enfin, lancez la création de la base de données :
     bin/console doctrine:database:create
 
 Sur [phpMyAdmin](http://phpmyadmin/), vérifiez que la base a bien été créée.
+
+## Utilisateurs de démonstration
+
+| Nom    | Prénom | Email             | Mot de passe | Rôle        |
+|--------|--------|-----------------|--------------|------------|
+| Stark  | Tony   | root@example.com | test         | ROLE_ADMIN |
+| Parker | Peter  | user@example.com | test         | ROLE_USER  |
+
+>Tous les utilisateurs ont ROLE_USER par défaut.
+>
+>10 utilisateurs aléatoires sont créés pour tests et développement.
