@@ -7,7 +7,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class ContactCrudController extends AbstractCrudController
 {
@@ -16,10 +17,16 @@ class ContactCrudController extends AbstractCrudController
         return Contact::class;
     }
 
-    public function configureCrud(Crud $crud): Crud
+    public function configureFields(string $pageName): iterable
     {
-        return $crud
-            ->setEntityLabelInSingular('Contact')
-            ->setEntityLabelInPlural('Contacts');
+        return [
+            IdField::new('id')->hideOnForm(),
+
+            TextField::new('lastname', 'Nom'),
+            TextField::new('firstname', 'Prénom'),
+            EmailField::new('email', 'Email'),
+
+            AssociationField::new('category', 'Catégorie'),
+        ];
     }
 }
