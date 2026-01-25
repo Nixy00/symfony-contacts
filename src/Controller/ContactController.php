@@ -59,13 +59,12 @@ final class ContactController extends AbstractController
     }
 
     #[Route('/contact/create', name: 'app_contact_create')]
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function create(Request $request, EntityManagerInterface $em): Response
     {
         $contact = new Contact();
 
         $form = $this->createForm(ContactType::class, $contact);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
