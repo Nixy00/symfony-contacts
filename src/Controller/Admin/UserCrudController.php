@@ -25,13 +25,7 @@ class UserCrudController extends AbstractCrudController
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
         if ($entityInstance instanceof User) {
-            $plainPassword = $this->getContext()->getRequest()->request->all()['User']['plainPassword'] ?? '';
-
-            if (!empty($plainPassword)) {
-                $entityInstance->setPassword(
-                    $this->passwordHasher->hashPassword($entityInstance, $plainPassword)
-                );
-            }
+            $this->setUserPassword($entityInstance);
         }
 
         parent::updateEntity($entityManager, $entityInstance);
@@ -76,5 +70,16 @@ class UserCrudController extends AbstractCrudController
         return $crud
             ->setEntityLabelInSingular('Utilisateur')
             ->setEntityLabelInPlural('Utilisateurs');
+    }
+
+    public function setUserPassword(User $entityInstance): void
+    {
+        $plainPassword = $this->getContext()->getRequest()->request->all()['User']['plainPassword'] ?? '';
+
+        if (!empty($plainPassword)) {
+            $entityInstance->setPassword(
+                $this->passwordHasher->hashPassword($entityInstance, $plainPassword)
+            );
+        }
     }
 }
