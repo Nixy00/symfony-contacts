@@ -25,9 +25,7 @@ class UserCrudController extends AbstractCrudController
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
         if ($entityInstance instanceof User) {
-            $requestData = $this->getContext()->getRequest()->request->all();
-
-            $plainPassword = $requestData['User']['plainPassword'] ?? '';
+            $plainPassword = $this->getContext()->getRequest()->request->all()['User']['plainPassword'] ?? '';
 
             if (!empty($plainPassword)) {
                 $entityInstance->setPassword(
